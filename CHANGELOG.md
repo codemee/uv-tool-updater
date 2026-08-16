@@ -2,6 +2,12 @@
 
 All notable changes are documented here. Versions follow PEP 440 and this project uses semantic versioning while the public API is pre-1.0.
 
+## 0.1.9 - 2026-08-16
+
+### Fixed
+
+- Clarified the interactive CLI message: the helper restarts console commands in the background, so users should invoke the command again to view the saved update result.
+
 ## 0.1.8 - 2026-08-16
 
 ### Added

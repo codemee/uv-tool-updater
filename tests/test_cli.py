@@ -61,6 +61,7 @@ def test_yes_starts_helper_and_reports_exit_flow() -> None:
     assert updater.prepared and updater.started_with is not None
     assert updater.restart_args == ["--latest-version", "2.0"]
     assert any("helper PID 4321" in line for line in lines)
+    assert any("請再次執行本命令查看結果" in line for line in lines)
 
 
 def test_non_yes_cancels_without_preparing() -> None:

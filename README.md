@@ -4,7 +4,7 @@ English | [繁體中文](README.zh-TW.md)
 
 `uv-tool-updater` coordinates safe updates for Python CLI, desktop, and tray applications installed by `uv tool install`. It does not modify an environment itself: installation is delegated to `uv tool upgrade`, after the host process exits.
 
-> Status: early MVP (`0.1.8`). The public API and result schema may evolve before 1.0.
+> Status: early MVP (`0.1.9`). The public API and result schema may evolve before 1.0.
 
 ## Install
 
@@ -23,19 +23,19 @@ uv tool install uv-tool-updater
 show-version
 ```
 
-`show-version` prints the installed version, checks PyPI, and asks before updating when a newer release exists. Only `y` or `Y` starts the normal external-helper update flow. The command exits, `uv tool upgrade uv-tool-updater==<verified-version>` runs after that process has ended, and `show-version` is restarted to report the result.
+`show-version` prints the installed version, checks PyPI, and asks before updating when a newer release exists. Only `y` or `Y` starts the normal external-helper update flow. The command exits, and `uv tool upgrade uv-tool-updater==<verified-version>` runs after that process has ended. Console commands restart in the background without an interactive terminal; invoke `show-version` again to display the saved result.
 
 For an isolated test state directory, set `UV_TOOL_UPDATER_STATE_DIR` before running the command.
 
 Before the project is published to PyPI, simulate release metadata with:
 
 ```console
-show-version --latest-version 0.1.8
+show-version --latest-version 0.1.9
 ```
 
 This option changes only the metadata used by the version check. The update itself still uses the source saved by uv, while qualifying the requirement as `uv-tool-updater==<verified-version>`. For a local-path installation, change the project version and source first, while leaving the installed tool on the older version, then run the command with that newer version number.
 
-On Windows, a console command restarted by the hidden helper may not receive an interactive terminal. In that case it exits without consuming the result; run `show-version` once more in the existing terminal to display the completed update result.
+A console command restarted by the background helper does not receive an interactive terminal. It exits without consuming the result; run `show-version` once more in the existing terminal to display the completed update result. GUI and tray applications still restart normally.
 
 ## Minimal integration
 

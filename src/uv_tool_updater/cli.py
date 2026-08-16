@@ -118,7 +118,10 @@ def run(
     except (UpdaterError, OSError, ValueError) as exc:
         output(f"無法啟動更新程序：{exc}")
         return 1
-    output(f"更新程序已啟動（helper PID {helper_pid}）；本程式即將結束，完成後會自動重新啟動。")
+    output(
+        f"更新程序已啟動（helper PID {helper_pid}）；本程式即將結束。"
+        "更新完成後，請再次執行本命令查看結果。"
+    )
     return 0
 
 
