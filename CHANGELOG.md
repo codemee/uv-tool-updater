@@ -2,6 +2,13 @@
 
 All notable changes are documented here. Versions follow PEP 440 and this project uses semantic versioning while the public API is pre-1.0.
 
+## 0.1.5 - 2026-08-16
+
+### Added
+
+- Complete Traditional Chinese README and technical documentation for architecture, integration, helper protocol, security, testing, troubleshooting, and release operations.
+- Bidirectional English/Traditional Chinese navigation across the documentation set.
+
 ## 0.1.4 - 2026-08-16
 
 Update-path validation release.

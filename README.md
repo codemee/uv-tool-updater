@@ -1,8 +1,10 @@
 # uv-tool-updater
 
+English | [繁體中文](README.zh-TW.md)
+
 `uv-tool-updater` coordinates safe updates for Python CLI, desktop, and tray applications installed by `uv tool install`. It does not modify an environment itself: installation is delegated to `uv tool upgrade`, after the host process exits.
 
-> Status: early MVP (`0.1.4`). The public API and result schema may evolve before 1.0.
+> Status: early MVP (`0.1.5`). The public API and result schema may evolve before 1.0.
 
 ## Install
 
@@ -28,7 +30,7 @@ For an isolated test state directory, set `UV_TOOL_UPDATER_STATE_DIR` before run
 Before the project is published to PyPI, simulate release metadata with:
 
 ```console
-show-version --latest-version 0.1.4
+show-version --latest-version 0.1.6
 ```
 
 This option changes only the metadata used by the version check. The update itself still runs `uv tool upgrade uv-tool-updater` and therefore uses the source saved by uv. For a local-path installation, change the project version and source first, while leaving the installed tool on the older version, then run the command with that newer version number.
@@ -71,6 +73,8 @@ On restart, use `updater.consume_latest_result()` (or consume a path returned by
 - No telemetry and no GUI-framework dependency.
 
 ## Documentation
+
+- [Traditional Chinese documentation](README.zh-TW.md#技術文件)
 
 - [Architecture and lifecycle](https://github.com/codemee/uv-tool-updater/blob/main/docs/architecture.md)
 - [Host integration guide](https://github.com/codemee/uv-tool-updater/blob/main/docs/integration.md)

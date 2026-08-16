@@ -1,5 +1,7 @@
 # Testing
 
+English | [繁體中文](zh-TW/testing.md)
+
 Install test dependencies and run the isolated suite:
 
 ```console

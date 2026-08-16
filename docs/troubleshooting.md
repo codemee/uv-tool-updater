@@ -1,11 +1,13 @@
 # Troubleshooting
 
+English | [繁體中文](zh-TW/troubleshooting.md)
+
 ## `Package 'uv-tool-updater' was not found`
 
 The installed version was read successfully, but the default provider could not find the project on public PyPI. For local-path testing, use:
 
 ```console
-show-version --latest-version 0.1.4
+show-version --latest-version 0.1.6
 ```
 
 This simulates metadata only. The source used by `uv tool upgrade` remains the source recorded by uv.

@@ -1,5 +1,7 @@
 # External helper protocol
 
+English | [繁體中文](zh-TW/helper-protocol.md)
+
 ## Why an external helper exists
 
 An application cannot safely replace its own uv-managed environment while it is executing from that environment. Windows may hold executable or module files open, and every platform risks a partially replaced runtime. The helper therefore runs under an operating-system shell outside the tool environment, waits for the host to disappear, performs the uv command, records the result, and restarts the resolved command.

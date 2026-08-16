@@ -1,5 +1,7 @@
 # Security model
 
+English | [繁體中文](zh-TW/security.md)
+
 The release provider and uv installer are separate trust domains. Provider metadata is never used to select an executable, package source, script, or arbitrary installer option. `uv tool upgrade <validated-package-name>` remains the only mutation path, and uv retains responsibility for indexes, constraints, downloads, and environment replacement.
 
 Commands are never passed through `shell=True`. The generated helpers use platform-specific literal quoting for absolute executable paths and restart argument arrays. Session names are random, state/result writes use atomic replacement, Unix permissions are restricted to the current user, and cleanup targets only explicit files belonging to the session.

@@ -1,5 +1,7 @@
 # Release procedure
 
+English | [繁體中文](zh-TW/releasing.md)
+
 ## Preconditions
 
 1. Choose a PEP 440 version not already present on PyPI; published filenames cannot be replaced.

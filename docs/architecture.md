@@ -1,5 +1,7 @@
 # Architecture and lifecycle
 
+English | [繁體中文](zh-TW/architecture.md)
+
 ## Design objective
 
 `uv-tool-updater` coordinates updates without becoming a second package installer. It never downloads wheels, rewrites `site-packages`, edits uv receipts, or chooses a package index. The only installation mutation is the structured command:

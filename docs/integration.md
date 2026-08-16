@@ -1,5 +1,7 @@
 # Host integration guide
 
+English | [繁體中文](zh-TW/integration.md)
+
 ## Basic flow
 
 Create one `Updater` for the installed distribution and the console entry point that should be restarted:
@@ -105,7 +107,7 @@ Recommended automatic-check policy:
 `show-version` exercises the package against itself. Before a PyPI release exists, `--latest-version` injects only the release metadata:
 
 ```console
-show-version --latest-version 0.1.4
+show-version --latest-version 0.1.6
 ```
 
 The real mutation is still `uv tool upgrade uv-tool-updater`; uv uses the source stored at installation. For a local-path test, install version N, change the source metadata to N+1 without reinstalling, then request N+1 with this flag.
