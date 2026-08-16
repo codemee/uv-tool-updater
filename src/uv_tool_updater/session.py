@@ -12,6 +12,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from packaging.utils import canonicalize_name
+from packaging.version import Version
 
 from .backend import upgrade_command
 from .errors import HelperLaunchError, InvalidSessionError, UnsupportedInstallationError
@@ -187,7 +188,10 @@ def _ps(value: str | Path) -> str:
 
 
 def _powershell_helper(plan: UpdatePlan) -> str:
-    uv_args = ", ".join(_ps(item) for item in upgrade_command(plan.uv_path, plan.package_name)[1:])
+    uv_args = ", ".join(
+        _ps(item)
+        for item in upgrade_command(plan.uv_path, plan.package_name, Version(plan.requested_version))[1:]
+    )
     restart_args = ", ".join(_ps(item) for item in plan.restart_args)
     restart_on_failure = "$true" if plan.restart_on_failure else "$false"
     return f"""param([Parameter(Mandatory=$true)][int]$HostPid)
@@ -244,7 +248,10 @@ Remove-Item -Force -LiteralPath {_ps(plan.helper_path)} -ErrorAction SilentlyCon
 
 
 def _sh_helper(plan: UpdatePlan) -> str:
-    command = " ".join(shlex.quote(item) for item in upgrade_command(plan.uv_path, plan.package_name))
+    command = " ".join(
+        shlex.quote(item)
+        for item in upgrade_command(plan.uv_path, plan.package_name, Version(plan.requested_version))
+    )
     restart = " ".join(shlex.quote(item) for item in (str(plan.command_path), *plan.restart_args))
     timeout = max(1, math.ceil(plan.wait_timeout))
     restart_condition = '[ "$status" = succeeded ] || [ "$restart_on_failure" = 1 ]'

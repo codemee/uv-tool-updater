@@ -34,6 +34,7 @@ def test_prepare_writes_quoted_helper_and_plan(tmp_path: Path) -> None:
     )
     script = session.helper_path.read_text(encoding="utf-8")
     assert "tool" in script and "upgrade" in script
+    assert "demo-tool==2" in script
     assert session.helper_path.with_suffix(".json").exists()
     assert session.plan.lock_path.is_dir()
     if os.name == "nt":

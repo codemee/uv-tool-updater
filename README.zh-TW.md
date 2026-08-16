@@ -4,7 +4,7 @@
 
 `uv-tool-updater` 為透過 `uv tool install` 安裝的 Python CLI、桌面與系統匣應用程式協調安全更新。它不自行修改工具環境；主程式結束後，實際安裝工作會交由 `uv tool upgrade` 完成。
 
-> 狀態：早期 MVP（`0.1.5`）。在 1.0 之前，公開 API 與結果結構仍可能調整。
+> 狀態：早期 MVP（`0.1.6`）。在 1.0 之前，公開 API 與結果結構仍可能調整。
 
 ## 安裝
 
@@ -23,7 +23,7 @@ uv tool install uv-tool-updater
 show-version
 ```
 
-`show-version` 會顯示目前版本、查詢 PyPI，並在有新版時詢問是否更新。只有輸入 `y` 或 `Y` 才會啟動外部 helper。原程式結束後，helper 會執行 `uv tool upgrade uv-tool-updater`，再重新啟動 `show-version` 以回報結果。
+`show-version` 會顯示目前版本、查詢 PyPI，並在有新版時詢問是否更新。只有輸入 `y` 或 `Y` 才會啟動外部 helper。原程式結束後，helper 會以已驗證的目標版本執行 `uv tool upgrade uv-tool-updater==<版本>`，再重新啟動 `show-version` 以回報結果。
 
 若要使用隔離的測試狀態目錄，請設定 `UV_TOOL_UPDATER_STATE_DIR`。若尚未發布新版，也可只模擬版本 metadata：
 

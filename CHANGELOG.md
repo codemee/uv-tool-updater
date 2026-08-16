@@ -2,6 +2,12 @@
 
 All notable changes are documented here. Versions follow PEP 440 and this project uses semantic versioning while the public API is pre-1.0.
 
+## 0.1.6 - 2026-08-16
+
+### Fixed
+
+- Fixed automatic updates from version-pinned uv tool installations by passing the verified target version to `uv tool upgrade`.
+
 ## 0.1.5 - 2026-08-16
 
 ### Added
