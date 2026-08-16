@@ -2,7 +2,7 @@
 
 `uv-tool-updater` coordinates safe updates for Python CLI, desktop, and tray applications installed by `uv tool install`. It does not modify an environment itself: installation is delegated to `uv tool upgrade`, after the host process exits.
 
-> Status: early MVP (`0.1.3`). The public API and result schema may evolve before 1.0.
+> Status: early MVP (`0.1.4`). The public API and result schema may evolve before 1.0.
 
 ## Install
 

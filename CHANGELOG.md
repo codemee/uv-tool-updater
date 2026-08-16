@@ -2,6 +2,15 @@
 
 All notable changes are documented here. Versions follow PEP 440 and this project uses semantic versioning while the public API is pre-1.0.
 
+## 0.1.4 - 2026-08-16
+
+Update-path validation release.
+
+### Changed
+
+- Published a higher version so installations of `0.1.3` can exercise the complete PyPI version-check, external-helper upgrade, and restart flow on real machines.
+- Retained the cross-platform PowerShell encoding and timestamp compatibility fixes validated by the release CI matrix.
+
 ## 0.1.3 - 2026-08-16
 
 Initial public release.
