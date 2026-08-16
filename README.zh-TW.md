@@ -4,7 +4,7 @@
 
 `uv-tool-updater` 為透過 `uv tool install` 安裝的 Python CLI、桌面與系統匣應用程式協調安全更新。它不自行修改工具環境；主程式結束後，實際安裝工作會交由 `uv tool upgrade` 完成。
 
-> 狀態：早期 MVP（`0.1.6`）。在 1.0 之前，公開 API 與結果結構仍可能調整。
+> 狀態：早期 MVP（`0.1.7`）。在 1.0 之前，公開 API 與結果結構仍可能調整。
 
 ## 安裝
 
@@ -28,7 +28,7 @@ show-version
 若要使用隔離的測試狀態目錄，請設定 `UV_TOOL_UPDATER_STATE_DIR`。若尚未發布新版，也可只模擬版本 metadata：
 
 ```console
-show-version --latest-version 0.1.6
+show-version --latest-version 0.1.7
 ```
 
 此參數只替換版本檢查資料；實際更新仍使用 uv 記錄的安裝來源。在 Windows 上，由隱藏 helper 重新啟動的主控台命令可能沒有互動終端；此時請在原本的終端再執行一次 `show-version`，即可讀取更新結果。

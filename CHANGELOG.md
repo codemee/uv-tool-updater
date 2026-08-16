@@ -2,6 +2,16 @@
 
 All notable changes are documented here. Versions follow PEP 440 and this project uses semantic versioning while the public API is pre-1.0.
 
+## 0.1.7 - 2026-08-16
+
+### Added
+
+- Published a higher version so installations of `0.1.6` can exercise the fixed version-pinned automatic update flow on real machines.
+
+### Documentation
+
+- Clarified that simulated release metadata also results in a version-qualified `uv tool upgrade` command.
+
 ## 0.1.6 - 2026-08-16
 
 ### Fixed
