@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import tempfile
 from dataclasses import replace
 from datetime import datetime
@@ -83,7 +84,11 @@ def atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
 def _datetime(value: Any) -> datetime:
     if not isinstance(value, str):
         raise TypeError
-    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    # Windows PowerShell's round-trip format may contain seven fractional
+    # digits, which Python 3.10's fromisoformat() does not accept.  Datetime only
+    # stores microseconds, so normalize longer fractions before parsing.
+    normalized = re.sub(r"(?<=\.)(\d{6})\d+(?=Z|[+-]\d{2}:\d{2}$)", r"\1", value)
+    return datetime.fromisoformat(normalized.replace("Z", "+00:00"))
 
 
 def _optional_string(value: Any) -> str | None:

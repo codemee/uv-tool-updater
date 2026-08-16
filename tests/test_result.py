@@ -46,3 +46,14 @@ def test_reads_windows_powershell_utf8_bom(tmp_path: Path) -> None:
     path = tmp_path / "result.json"
     path.write_text(json.dumps(payload()), encoding="utf-8-sig")
     assert read_result(path).session_id == "abc"
+
+
+def test_reads_powershell_seven_digit_fraction_on_python_310(tmp_path: Path) -> None:
+    data = payload()
+    data["started_at"] = "2026-08-16T07:23:36.2148165Z"
+    data["finished_at"] = "2026-08-16T07:23:37.1234567Z"
+    path = tmp_path / "result.json"
+    atomic_write_json(path, data)
+    result = read_result(path)
+    assert result.started_at.microsecond == 214816
+    assert result.finished_at.microsecond == 123456

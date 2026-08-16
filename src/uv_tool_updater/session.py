@@ -144,7 +144,11 @@ def prepare_session(
     )
     try:
         script = _powershell_helper(plan) if os.name == "nt" else _sh_helper(plan)
-        helper_path.write_text(script, encoding="utf-8", newline="\n")
+        # Windows PowerShell 5.1 treats BOM-less script files as the active ANSI
+        # code page.  A BOM is therefore required when paths or arguments contain
+        # non-ASCII characters.  POSIX helpers remain plain UTF-8.
+        helper_encoding = "utf-8-sig" if os.name == "nt" else "utf-8"
+        helper_path.write_text(script, encoding=helper_encoding, newline="\n")
         if os.name != "nt":
             helper_path.chmod(0o700)
         plan_payload = {key: _json_value(value) for key, value in asdict(plan).items()}
@@ -227,7 +231,7 @@ $result = [ordered]@{{
     schema_version = 1; session_id = {_ps(plan.session_id)}; package_name = {_ps(plan.package_name)}
     previous_version = {_ps(plan.previous_version)}; requested_version = {_ps(plan.requested_version)}
     actual_version = $null; uv_exit_code = $uvExit; status = $status
-    started_at = $started.ToString('o'); finished_at = [DateTime]::UtcNow.ToString('o')
+    started_at = $started.ToString('yyyy-MM-ddTHH:mm:ss.ffffffZ'); finished_at = [DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ss.ffffffZ')
     log_path = {_ps(plan.log_path)}; error = $errorMessage
 }}
 $temporary = {_ps(str(plan.result_path) + '.tmp')}
