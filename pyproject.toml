@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "uv-tool-updater"
-version = "0.1.7"
+version = "0.1.8"
 description = "Lifecycle-safe updates for Python applications installed with uv tool"
 readme = "README.md"
 requires-python = ">=3.10"
